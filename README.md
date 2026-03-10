@@ -10,17 +10,25 @@ A secure web application that hides confidential files inside ordinary video fil
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [How It Works](#how-it-works)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Screenshots](#screenshots)
-- [Security](#security)
-- [License](#license)
-- [Author](#author)
+- [StegoVault](#stegovault)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [How It Works](#how-it-works)
+    - [Embedding Process](#embedding-process)
+    - [Extraction Process](#extraction-process)
+  - [Tech Stack](#tech-stack)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Steps](#steps)
+  - [Usage](#usage)
+    - [Hiding a File in a Video](#hiding-a-file-in-a-video)
+    - [Extracting a Hidden File](#extracting-a-hidden-file)
+  - [Project Structure](#project-structure)
+  - [Screenshots](#screenshots)
+  - [Security](#security)
+  - [License](#license)
+  - [Author](#author)
 
 ---
 
@@ -205,7 +213,7 @@ stego_vault/
 
 | Landing Page | App — Embed | App — Extract |
 |-------------|-------------|---------------|
-| _(screenshot)_ | _(screenshot)_ | _(screenshot)_ |
+| ![Landing](https://raw.githubusercontent.com/Raj-dina005/stego-vault/main/static/images/landing.png) | ![Embed](https://raw.githubusercontent.com/Raj-dina005/stego-vault/main/static/images/embed.png) | ![Extract](https://raw.githubusercontent.com/Raj-dina005/stego-vault/main/static/images/extract.png) |
 
 ---
 
@@ -257,7 +265,7 @@ SOFTWARE.
 
 **Raj**
 
-- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- GitHub: [Raj-dina005](https://github.com/Raj-dina005)
 
 ---
 
