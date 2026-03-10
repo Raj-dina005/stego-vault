@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StegoVault — Secure Video Steganography</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <i class="fas fa-shield-halved"></i>
+      <span>StegoVault</span>
+    </div>
+    <a href="/app" class="nav-btn">Launch App</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-tag animate-1">
+      <span>// SECURE VIDEO STEGANOGRAPHY</span>
+    </div>
+
+    <h1 class="hero-title animate-2">STEGO<br/>VAULT</h1>
+
+    <div class="hero-sub animate-3">
+      <p>Conceal. Encrypt. Protect.</p>
+    </div>
+
+    <p class="hero-desc animate-4">
+      Hide any file inside a normal video using military-grade<br/>
+      AES-256 encryption. Invisible to the naked eye.
+    </p>
+
+    <a href="/app" class="hero-btn animate-5">
+      <span>Enter App</span>
+      <i class="fas fa-arrow-right"></i>
+    </a>
+
+    <div class="scroll-indicator animate-6">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="features-header">
+      <p class="section-tag">// WHAT WE DO</p>
+      <h2>Two Layers of <span>Protection</span></h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-eye-slash"></i>
+        </div>
+        <h3>Steganography</h3>
+        <p>Your secret file is invisibly embedded inside a normal video. No one knows it's there.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+        <h3>AES-256 Encryption</h3>
+        <p>Military-grade encryption protects your data. Even if found, it cannot be read without your password.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-shield-halved"></i>
+        </div>
+        <h3>Integrity Verification</h3>
+        <p>SHA-256 hashing detects any tampering or corruption of the video before extraction.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <h3>Zero Storage</h3>
+        <p>Nothing is stored on our servers. Files are processed in memory and deleted immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how">
+    <div class="features-header">
+      <p class="section-tag">// HOW IT WORKS</p>
+      <h2>Simple. <span>Secure.</span> Seamless.</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Upload Your Video</h3>
+          <p>Choose any MP4, AVI or MKV video as your carrier file.</p>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Select Secret File</h3>
+          <p>Upload any file — image, document, audio — to hide inside.</p>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>Set Password</h3>
+          <p>Choose a strong password to encrypt your hidden file.</p>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>Download & Share</h3>
+          <p>Get your stego video — it plays normally but hides your secret.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <h2 class="animate-2">Ready to hide your secrets?</h2>
+    <p>No account needed. No data stored. 100% private.</p>
+    <a href="/app" class="hero-btn">
+      <span>Launch StegoVault</span>
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <i class="fas fa-shield-halved"></i>
+      <span>StegoVault</span>
+    </div>
+    <p>Built with Python, Flask & AES-256 Encryption</p>
+    <p class="footer-copy">© 2025 StegoVault — All rights reserved</p>
+  </footer>
+
+</body>
+</html>

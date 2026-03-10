@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StegoVault — Secure Video Steganography</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <i class="fas fa-shield-halved"></i>
+      <span>StegoVault</span>
+    </div>
+    <p class="tagline">Conceal. Encrypt. Protect.</p>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Tab Switcher -->
+    <div class="tabs">
+      <button class="tab active" data-tab="embed">
+        <i class="fas fa-eye-slash"></i> Embed
+      </button>
+      <button class="tab" data-tab="extract">
+        <i class="fas fa-eye"></i> Extract
+      </button>
+    </div>
+
+    <!-- ── EMBED SECTION ── -->
+    <section id="embed" class="panel active">
+      <h2><i class="fas fa-lock"></i> Hide a File Inside a Video</h2>
+      <p class="desc">Upload a video and a secret file. Enter a password to encrypt and hide the file inside the video.</p>
+
+      <div class="form-group">
+  <label><i class="fas fa-film"></i> Cover Video</label>
+  <div class="drop-zone" id="embed-video-drop">
+    <i class="fas fa-cloud-upload-alt"></i>
+    <p>Drag & drop or <span>browse</span></p>
+    <small>Supported: MP4, AVI, MKV</small>
+    <input type="file" id="embed-video" accept=".mp4,.avi,.mkv" />
+  </div>
+  <div class="file-info" id="embed-video-info"></div>
+  <!-- Video Preview -->
+  <div class="video-preview" id="embed-video-preview">
+    <video id="embed-video-player" controls></video>
+  </div>
+</div>
+
+      <div class="form-group">
+        <label><i class="fas fa-file-secret"></i> Secret File</label>
+        <div class="drop-zone" id="embed-secret-drop">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Drag & drop or <span>browse</span></p>
+          <small>Supported: PDF, TXT, DOCX, PNG, JPG, GIF, WEBP, BMP, MP3, WAV, XLSX, CSV, ZIP</small>
+          <input type="file" id="embed-secret" accept=".pdf,.txt,.docx,.png,.jpg,.zip" />
+        </div>
+        <div class="file-info" id="embed-secret-info"></div>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-key"></i> Encryption Password</label>
+        <div class="password-wrap">
+          <input type="password" id="embed-password" placeholder="Enter a strong password..." />
+          <button class="toggle-pw" data-target="embed-password"><i class="fas fa-eye"></i></button>
+        </div>
+        <div class="strength-bar"><div class="strength-fill" id="embed-strength"></div></div>
+        <small class="strength-label" id="embed-strength-label"></small>
+      </div>
+
+     <!-- Progress Bar -->
+<div class="progress-wrap" id="embed-progress">
+  <div class="progress-steps">
+    <div class="progress-step" id="ps-1">
+      <div class="ps-dot"></div>
+      <span>Encrypting</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" id="ps-2">
+      <div class="ps-dot"></div>
+      <span>Embedding</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" id="ps-3">
+      <div class="ps-dot"></div>
+      <span>Verifying</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" id="ps-4">
+      <div class="ps-dot"></div>
+      <span>Done</span>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="embed-bar"></div>
+  </div>
+</div>
+
+<button class="btn-primary" id="embed-btn">
+  <i class="fas fa-shield-halved"></i> Embed & Encrypt
+</button>
+
+      <div class="result" id="embed-result"></div>
+    </section>
+
+    <!-- ── EXTRACT SECTION ── -->
+    <section id="extract" class="panel">
+      <h2><i class="fas fa-unlock"></i> Extract Hidden File from Video</h2>
+      <p class="desc">Upload a stego video and enter the correct password to reveal and download the hidden file.</p>
+
+      <div class="form-group">
+  <label><i class="fas fa-film"></i> Stego Video</label>
+  <div class="drop-zone" id="extract-video-drop">
+    <i class="fas fa-cloud-upload-alt"></i>
+    <p>Drag & drop or <span>browse</span></p>
+    <small>Supported: MP4, AVI, MKV</small>
+    <input type="file" id="extract-video" accept=".mp4,.avi,.mkv" />
+  </div>
+  <div class="file-info" id="extract-video-info"></div>
+  <!-- Video Preview -->
+  <div class="video-preview" id="extract-video-preview">
+    <video id="extract-video-player" controls></video>
+  </div>
+</div>
+
+      <div class="form-group">
+        <label><i class="fas fa-key"></i> Decryption Password</label>
+        <div class="password-wrap">
+          <input type="password" id="extract-password" placeholder="Enter your password..." />
+          <button class="toggle-pw" data-target="extract-password"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+<div class="progress-wrap" id="extract-progress">
+  <div class="progress-steps">
+    <div class="progress-step" id="ep-1">
+      <div class="ps-dot"></div>
+      <span>Verifying</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" id="ep-2">
+      <div class="ps-dot"></div>
+      <span>Decrypting</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" id="ep-3">
+      <div class="ps-dot"></div>
+      <span>Extracting</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" id="ep-4">
+      <div class="ps-dot"></div>
+      <span>Done</span>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="extract-bar"></div>
+  </div>
+</div>
+
+<button class="btn-primary" id="extract-btn">
+  <i class="fas fa-unlock-keyhole"></i> Extract & Decrypt
+</button>
+
+      <div class="result" id="extract-result"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>StegoVault &copy; 2025 — Built with Python, Flask & AES-256 Encryption</p>
+  </footer>
+
+  <!-- Loader Overlay -->
+  <div class="loader-overlay" id="loader">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <p id="loader-text">Processing...</p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

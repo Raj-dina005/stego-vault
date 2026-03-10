@@ -1,0 +1,695 @@
+/* ── Imports & Variables ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap');
+
+:root {
+  --bg: #080b0f;
+  --card: #0d1520;
+  --card2: #111e2e;
+  --border: #1a2d40;
+  --accent: #00d4ff;
+  --accent2: #00ff9d;
+  --warn: #ff6b35;
+  --danger: #ff3b5c;
+  --text: #c8d6e0;
+  --muted: #4a6070;
+  --glow-blue: 0 0 20px rgba(0, 212, 255, 0.4);
+  --glow-green: 0 0 20px rgba(0, 255, 157, 0.4);
+  --glow-red: 0 0 20px rgba(255, 59, 92, 0.4);
+}
+
+/* ── Reset & Base ────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Animated Background ─────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(0, 255, 157, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: bgPulse 8s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes bgPulse {
+  0%   { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@keyframes gridMove {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(50px); }
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.header {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.logo i {
+  font-size: 2.2rem;
+  color: var(--accent2);
+  filter: drop-shadow(var(--glow-green));
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(0,255,157,0.4)); }
+  50%       { filter: drop-shadow(0 0 25px rgba(0,255,157,0.9)); }
+}
+
+.logo span {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: 'Share Tech Mono', monospace;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  animation: glitch 5s infinite;
+}
+
+/* ── Glitch Effect ───────────────────────────────────────────────────────── */
+@keyframes glitch {
+  0%, 90%, 100% { text-shadow: none; transform: translate(0); }
+  91% {
+    text-shadow: -2px 0 var(--danger), 2px 0 var(--accent);
+    transform: translate(-1px, 0);
+  }
+  92% {
+    text-shadow: 2px 0 var(--danger), -2px 0 var(--accent2);
+    transform: translate(1px, 0);
+  }
+  93% { text-shadow: none; transform: translate(0); }
+  94% {
+    text-shadow: -1px 0 var(--accent2), 1px 0 var(--danger);
+    transform: translate(1px, 1px);
+  }
+  95% { text-shadow: none; transform: translate(0); }
+}
+
+.tagline {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+/* ── Container ───────────────────────────────────────────────────────────── */
+.container {
+  position: relative;
+  z-index: 10;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 4rem;
+}
+
+/* ── Tabs ────────────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.5rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tab:hover {
+  color: var(--accent);
+  background: rgba(0, 212, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.tab.active {
+  background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,255,157,0.1));
+  color: var(--accent);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: var(--glow-blue);
+}
+
+/* ── Panel ───────────────────────────────────────────────────────────────── */
+.panel {
+  display: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(0,212,255,0.05),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  animation: fadeSlideIn 0.4s ease;
+  transition: box-shadow 0.3s ease;
+}
+
+.panel:hover {
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 40px rgba(0,212,255,0.08),
+    0 0 0 1px rgba(0,212,255,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.panel.active { display: block; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.panel h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.panel h2 i { color: var(--accent2); }
+
+.desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* ── Form Groups ─────────────────────────────────────────────────────────── */
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+.form-group label {
+  display: flex;
+  font-size: 0.85rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.05em;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ── Drop Zone ───────────────────────────────────────────────────────────── */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.02);
+  position: relative;
+}
+
+.drop-zone:hover {
+  border-color: var(--accent);
+  background: rgba(0, 212, 255, 0.05);
+  transform: translateY(-3px);
+  box-shadow: var(--glow-blue);
+}
+
+.drop-zone.dragover {
+  border-color: var(--accent2);
+  background: rgba(0, 255, 157, 0.08);
+  box-shadow: var(--glow-green);
+}
+
+.drop-zone.has-file {
+  border-color: var(--accent2);
+  border-style: solid;
+  background: rgba(0, 255, 157, 0.05);
+}
+
+.drop-zone i {
+  font-size: 2rem;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+  display: block;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.drop-zone:hover i {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+.drop-zone p {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+  pointer-events: none;
+}
+
+.drop-zone p span {
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.drop-zone small {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+/* Hide the actual file input but keep it functional */
+.drop-zone input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* ── File Info ───────────────────────────────────────────────────────────── */
+.file-info {
+  margin-top: 0.6rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent2);
+  min-height: 1.2rem;
+}
+
+/* ── Password Field ──────────────────────────────────────────────────────── */
+.password-wrap {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.password-wrap input {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1.2rem;
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.password-wrap input:focus {
+  border-color: var(--accent);
+  box-shadow: var(--glow-blue);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.toggle-pw {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0 1rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.toggle-pw:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.08);
+}
+
+/* ── Password Strength ───────────────────────────────────────────────────── */
+.strength-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 4px;
+  margin-top: 0.6rem;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  transition: all 0.4s ease;
+}
+
+.strength-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* ── Primary Button ──────────────────────────────────────────────────────── */
+.btn-primary {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  border-radius: 12px;
+  color: #080b0f;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 10px 30px rgba(0, 212, 255, 0.4),
+    0 0 60px rgba(0, 255, 157, 0.2);
+}
+
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:active { transform: translateY(-1px) scale(0.99); }
+
+/* ── Result Box ──────────────────────────────────────────────────────────── */
+.result {
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.result-success {
+  background: rgba(0, 255, 157, 0.08);
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  padding: 1.5rem;
+  animation: fadeSlideIn 0.4s ease;
+}
+
+.result-error {
+  background: rgba(255, 59, 92, 0.08);
+  border: 1px solid rgba(255, 59, 92, 0.3);
+  padding: 1.5rem;
+  animation: fadeSlideIn 0.4s ease;
+}
+
+.result-success h3 { color: var(--accent2); margin-bottom: 0.8rem; }
+.result-error h3   { color: var(--danger);  margin-bottom: 0.5rem; }
+
+.result-info {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.result-info span { color: var(--text); }
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  color: #080b0f;
+  border-radius: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.download-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--glow-green);
+}
+
+/* ── Loader ──────────────────────────────────────────────────────────────── */
+.loader-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 11, 15, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-overlay.active {
+  display: flex;
+  animation: fadeSlideIn 0.3s ease;
+}
+
+.loader-box {
+  text-align: center;
+  background: var(--card);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 0 60px rgba(0,212,255,0.15);
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-right-color: var(--accent2);
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#loader-text {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--accent);
+  font-size: 0.95rem;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .panel       { padding: 1.5rem; }
+  .logo span   { font-size: 1.8rem; }
+  .btn-primary { font-size: 0.9rem; }
+}
+
+/* ── Video Preview ───────────────────────────────────────────────────────── */
+.video-preview {
+  display: none;
+  margin-top: 1rem;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,212,255,0.2);
+  box-shadow: var(--glow-blue);
+  animation: fadeSlideIn 0.4s ease;
+}
+
+.video-preview.active { display: block; }
+
+.video-preview video {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+
+/* ── Progress Bar ────────────────────────────────────────────────────────── */
+.progress-wrap {
+  display: none;
+  margin-bottom: 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  animation: fadeSlideIn 0.4s ease;
+}
+
+.progress-wrap.active { display: block; }
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.progress-step span {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.progress-step.active span { color: var(--accent); }
+.progress-step.done span   { color: var(--accent2); }
+
+.ps-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 2px solid var(--muted);
+  transition: all 0.4s ease;
+}
+
+.progress-step.active .ps-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(0,212,255,0.6);
+  animation: dotPulse 1s ease-in-out infinite;
+}
+
+.progress-step.done .ps-dot {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  box-shadow: 0 0 12px rgba(0,255,157,0.6);
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.3); }
+}
+
+.progress-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  min-width: 40px;
+  margin: 0 0.5rem;
+  margin-bottom: 1.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: left 0.6s ease;
+}
+
+.progress-line.done::after { left: 0; }
+
+.progress-bar-wrap {
+  height: 4px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 10px rgba(0,212,255,0.5);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
